@@ -1,0 +1,55 @@
+{{>header}}
+<main role="main" class="container">
+    <h1 class="mt-5 text-center">Cración de cursos</h1>
+    <p class="lead text-center">En esta página podrás crear los cursos para los aspirantes de la academia</p>
+    <hr />
+    <form action="" method="post">
+        <div class="form-group">
+            <label for="id">Código curso</label>
+            <input type="number" class="form-control" id="id" aria-describedby="idHelp" placeholder="Código completo" required>
+            <small id="idHelp" class="form-text text-muted">* Código único en el sistema</small>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Nombre completo" required>
+                    <small id="nameHelp" class="form-text text-muted">* Debe diligenciar nombre completo del curso</small>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="value">Valor Curso</label>
+                    <input type="number" class="form-control" id="value" aria-describedby="valueHelp" placeholder="Costo del curso" required>
+                    <small id="valueHelp" class="form-text text-muted">* El valor del curso se representa en COP</small>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="modalidad">Modalidad del curso</label>
+                    <select id="modalidad" class="form-control">
+                        <option >Selecciona...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="estado">Estado del curso</label>
+                    <select id="estado" class="form-control" disabled>
+                        <option selected value="Activo">Activo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="descripcion">Descripción del curso</label>
+            <textarea class="form-control" id="descripcion" rows="3" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Registrar</button>
+    </form>
+    <hr><br><br>
+</main>
+{{>footer}}
