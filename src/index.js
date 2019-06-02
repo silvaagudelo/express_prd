@@ -20,11 +20,19 @@ app.use('/js', express.static(dirNode_modules + '/jquery/dist'));
 app.use('/js', express.static(dirNode_modules + '/popper.js/dist'));
 app.use('/js', express.static(dirNode_modules + '/bootstrap/dist/js'));
 
+require("./helpers/leerJson");
+
 app.get("/",(req,res)=>{
     res.render("index");
 })
 app.get("/create",(req,res)=>{
     res.render("create");
+})
+app.post("/createStatus",(req,res)=>{
+    res.render("createStatus");
+});
+app.use("*",(req,res)=>{
+    res.status(404).send("Error");
 })
 
 /**

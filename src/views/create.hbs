@@ -3,7 +3,7 @@
     <h1 class="mt-5 text-center">Cración de cursos</h1>
     <p class="lead text-center">En esta página podrás crear los cursos para los aspirantes de la academia</p>
     <hr />
-    <form action="" method="post">
+    <form action="/createStatus" method="post">
         <div class="form-group">
             <label for="id">Código curso</label>
             <input type="number" class="form-control" id="id" aria-describedby="idHelp" placeholder="Código completo" required>
@@ -29,9 +29,8 @@
             <div class="col">
                 <div class="form-group">
                     <label for="modalidad">Modalidad del curso</label>
-                    <select id="modalidad" class="form-control">
-                        <option >Selecciona...</option>
-                        <option>...</option>
+                    <select id="modalidad" class="form-control" required>
+                        {{{leerModalidades}}}
                     </select>
                 </div>
             </div>
@@ -39,7 +38,7 @@
                 <div class="form-group">
                     <label for="estado">Estado del curso</label>
                     <select id="estado" class="form-control" disabled>
-                        <option selected value="Activo">Activo</option>
+                        {{{leerEstados}}}
                     </select>
                 </div>
             </div>

@@ -1,7 +1,8 @@
 [
     {
         "id":"1",
-        "name": "Activo"
+        "name": "Activo",
+        "default":true
     },
     {
         "id":"2",
