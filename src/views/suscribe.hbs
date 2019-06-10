@@ -1,0 +1,49 @@
+{{>header}}
+<main role="main" class="container">
+    <h1 class="mt-5 text-center">formulario de inscripción en un curso</h1>
+    <p class="lead text-center">En esta página podrás inscribirte a los cursos disponibles en la academia</p>
+    <hr />
+    <form action="/enroll/enrollStatus" method="post">
+        <div class="form-group">
+            <label for="id">Documento de identidad</label>
+            <input type="number" class="form-control" id="id" name="id" aria-describedby="idHelp" placeholder="Documento de identidad" required>
+            <small id="idHelp" class="form-text text-muted">* Documento único asignado por la registraduria</small>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="Nombre completo" required>
+                    <small id="nameHelp" class="form-text text-muted">* Debe diligenciar su nombre completo</small>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="value">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="valueHelp" placeholder="Correo eléctronico de contacto" required>
+                    <small id="valueHelp" class="form-text text-muted">* Ingrese un correo eléctronico de contacto</small>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                   <input type="number" class="form-control" id="phone" name="phone" aria-describedby="phoneHelp" placeholder="Teléfono de contacto" required>
+                    <small id="phoneHelp" class="form-text text-muted">* Ingrese un teléfono de contacto</small>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="curso">Cursos disponibles</label>
+                    <select id="curso" name="curso" class="form-control">
+                        {{{cargarCursos}}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">¡Inscribirme!</button>
+    </form>
+    <hr><br><br>
+</main>
+{{>footer}}
