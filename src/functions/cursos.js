@@ -2,6 +2,8 @@
 const { writeFile, readFileSync } = require("fs");
 const path = require("path");
 const DB = path.join(__dirname, "../json_files/");
+const estado = require("./estados");
+const modalidad = require("./modalidades");
 
 let cursosFN = "cursos.json";
 let listadoCursos = [];
@@ -43,8 +45,9 @@ const suscribir = (course) => {
         id: course.id,
         name: course.name,
         value: course.value,
-        modality: course.modalidad,
-        description: course.descripcion
+        modality: course.modality,
+        status: course.status,
+        description: course.description
     }
     if (!listadoCursos.find(curso => curso.id == course.id)) {
         listadoCursos.push(curso);
@@ -58,32 +61,47 @@ const suscribir = (course) => {
     }
 };
 
-const mostrar = () => {
+const mostrar = (id) => {
     listar();
-    let html = `<hr/><p>A continuación se detallan los cursos registrados hasta el momento:</p><br><table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre Curso</th>
-        <th scope="col">Valor</th>
-        <th scope="col">Modalidad</th>
-        <th scope="col">Descripción</th>
-      </tr>
-    </thead>
-    <tbody>{{content}}</tbody></table><br><br><hr/>`;
-    let additional = "";
-    listadoCursos.forEach(curso => {
-        additional += `<tr><th scope="row">${curso.id}</th><td>${curso.name}</td><td>${curso.value}</td><td>${curso.modality}</td><td>${curso.description}</td></tr>`;
-    });
-    if (!additional) {
-        return "";
-    } else {
-        html = html.replace("{{content}}", additional);
-        return html;
+    if (!id){
+        return listadoCursos;
+    }else{
+        let curso = listadoCursos.find(curso => curso.id == id);
+        if (curso){
+            return curso;
+        }else{
+            return "";
+        }
     }
 };
 
+const actualizar = (info)=>{
+    if (!info){
+        return {
+            status: false,
+            message: "No se ha suministrado la información necesaria para actualizar la información"
+        }       
+    }else{
+        listar();
+        let curso = listadoCursos.find(curso => curso.id == info.id);
+        if (!curso){
+            return {
+                status: false,
+                message: "Curso no existe"
+            }
+        }else{
+            curso.name=info.name;
+            curso.value=info.value;
+            curso.modality=info.modality;
+            curso.status=info.status;
+            curso.description=info.description;
+            return guardar();
+        }
+    }
+}
+
 module.exports = {
     suscribir,
-    mostrar
+    mostrar,
+    actualizar
 }

@@ -1,5 +1,10 @@
 /* Sticky footer styles
 -------------------------------------------------- */
+.disable{
+  pointer-events:none;
+  background-color: #e9ecef;
+  opacity: 1;
+}
 html {
     position: relative;
     min-height: 100%;

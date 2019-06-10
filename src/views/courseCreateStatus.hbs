@@ -1,6 +1,6 @@
 {{>header}}
 <main role="main" class="container">
-    <form action="/create" method="get">
+    <form action="/course/create">
         <div class="form-row">
             <div class="col">
                 <div class="bd-callout bd-callout-warning">
@@ -10,7 +10,7 @@
                 </div>
             </div>
         </div>
-        {{{ leerCursos }}}
+        {{> courseList }}
         {{#if status }}
         <button type="submit" class="btn btn-success btn-lg btn-block">Regresar</button>
         {{else}}

@@ -7,7 +7,7 @@ const port= process.env.PORT || process.env.port || "3000";
 const currect_directory =  path.join(__dirname,"../public");
 const dirNode_modules = path.join(__dirname , '../node_modules');
 const partials = path.join(__dirname,"../src/partials");
-const base= require("./functions/base");
+const base= require("./functions/cursos");
 
 /**
  * Inicialización de la aplicación de express
@@ -22,18 +22,34 @@ app.use('/js', express.static(dirNode_modules + '/jquery/dist'));
 app.use('/js', express.static(dirNode_modules + '/popper.js/dist'));
 app.use('/js', express.static(dirNode_modules + '/bootstrap/dist/js'));
 
-require("./helpers/leerJson");
+require("./helpers/functions");
 
 app.get("/",(req,res)=>{
     res.render("index");
 })
-app.get("/create",(req,res)=>{
-    res.render("create");
+app.get("/course/create",(req,res)=>{
+    res.render("courseCreate");
 })
-app.post("/createStatus",(req,res)=>{
+app.post("/course/createStatus",(req,res)=>{
     let result = base.suscribir(req.body);
-    res.render("createStatus", result);
+    res.render("courseCreateStatus", result);
 });
+app.get("/course/view",(req,res)=>{
+    res.render("courseView");
+});
+app.get("/course/edit/:id(\\d+)/",(req,res)=>{
+    let course = base.mostrar(req.params.id);
+    if (course){
+        res.render("courseEdit", course);
+    }else{
+        res.redirect("/");
+    }
+});
+app.post("/course/editStatus",(req,res)=>{    
+    let result = base.actualizar(req.body);
+    res.render("courseCreateStatus", result);
+});
+
 app.use("*",(req,res)=>{
     res.status(404).send("Error");
 })
