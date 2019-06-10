@@ -7,10 +7,12 @@ const port= process.env.PORT || process.env.port || "3000";
 const currect_directory =  path.join(__dirname,"../public");
 const dirNode_modules = path.join(__dirname , '../node_modules');
 const partials = path.join(__dirname,"../src/partials");
+const base= require("./functions/base");
+
 /**
  * Inicialización de la aplicación de express
  */
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(currect_directory));
 hbs.registerPartials(partials);
 app.set('views', __dirname + '/views');
@@ -29,7 +31,8 @@ app.get("/create",(req,res)=>{
     res.render("create");
 })
 app.post("/createStatus",(req,res)=>{
-    res.render("createStatus");
+    let result = base.suscribir(req.body);
+    res.render("createStatus", result);
 });
 app.use("*",(req,res)=>{
     res.status(404).send("Error");

@@ -1,3 +1,21 @@
 {{>header}}
-
+<main role="main" class="container">
+    <form action="/create" method="get">
+        <div class="form-row">
+            <div class="col">
+                <div class="bd-callout bd-callout-warning">
+                    <h5 id="conveying-meaning-to-assistive-technologies">Estado de la operación
+                    </h5>
+                    <p>{{message}}</p>
+                </div>
+            </div>
+        </div>
+        {{{ leerCursos }}}
+        {{#if status }}
+        <button type="submit" class="btn btn-success btn-lg btn-block">Regresar</button>
+        {{else}}
+        <button type="submit" class="btn btn-danger btn-lg btn-block">Intentar nuevamente!</button>
+        {{/if}}
+    </form>
+</main>
 {{>footer}}

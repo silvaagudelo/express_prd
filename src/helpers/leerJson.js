@@ -2,6 +2,7 @@ const hbs = require("hbs");
 const path = require("path");
 const { readFileSync } = require("fs");
 const DB = path.join(__dirname,"../json_files/");
+const base = require("./../functions/base");
 
 /**
  * Lectura de estados desde los archivos .json
@@ -41,4 +42,9 @@ hbs.registerHelper("leerModalidades",()=>{
         array=[];
     }
     return html;
+});
+
+hbs.registerHelper("leerCursos",()=>{
+    let result = base.mostrar();
+    return result;
 });
